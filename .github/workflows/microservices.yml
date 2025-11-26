@@ -20,13 +20,14 @@ jobs:
           client-id: "7b20495a-a14c-4ef2-bd11-222bf2538418"
           tenant-id: "af734fcf-6a49-4af5-8ec9-51df7466b2c5"
           subscription-id: "95a90f4b-7e15-47ba-95ab-0d52bac078e4" 
-      - name: List workspace
-        run:  dir /s
 
   my_Second_job:
      name: Job 2
      runs-on: anjali
      steps:
+       - name: Clone Repo
+         uses: actions/checkout@v4
+        
        - name: Terraform Init
          id: init
          run: terraform init -input=false
@@ -41,6 +42,7 @@ jobs:
   my_third_job:
     name: Job 3
     runs-on: anjali
+    needs: my_Second_job
     steps:
     - name: Terraform Validate
       id: validate
@@ -51,11 +53,12 @@ jobs:
   my_fourth_job:
     name: Job 4
     runs-on: anjali
+    needs: my_third_job
     steps:
       - name: Terraform apply
         id: apply
         working-directory: environments/dev
-        run: terraform apply -auto-approve
+        run: terraform apply -auto-approve -no-color -input=false
         
         
     
