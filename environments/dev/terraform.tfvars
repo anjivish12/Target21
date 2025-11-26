@@ -65,7 +65,7 @@ secrets = {
 }
 servers = {
   server1 = {
-    name = "anjaliserver1"
+    name = "server123anji"
     location = "West US"
     resource_group_name = "rg-anjali"
     kv_name = "todo-key"
@@ -79,7 +79,7 @@ servers = {
 databases = {
   db1 = {
       name = "anjalidb121"
-      server_name = "anjaliserver1"
+      server_name = "server123anji"
       resource_group_name = "rg-anjali"
       collation    = "SQL_Latin1_General_CP1_CI_AS"
       license_type = "LicenseIncluded"
