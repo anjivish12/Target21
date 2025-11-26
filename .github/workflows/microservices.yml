@@ -7,7 +7,7 @@ on:
       
 permissions:
    id-token: write
-   issues: write
+   contents: read
    
 jobs:
   my_first_job:
@@ -20,44 +20,32 @@ jobs:
           client-id: "7b20495a-a14c-4ef2-bd11-222bf2538418"
           tenant-id: "af734fcf-6a49-4af5-8ec9-51df7466b2c5"
           subscription-id: "95a90f4b-7e15-47ba-95ab-0d52bac078e4" 
-      - name: List workspace
-        run: ls -R
 
-  my_Second_job:
-     name: Job 2
-     runs-on: anjali
-     steps:
-       - name: Terraform Init
-         id: init
-         run: terraform init -input=false
-         working-directory: environments/dev
+      - name: Clone Repo
+        uses: actions/checkout@v4
+        
+      - name: Terraform Init
+        id: init
+        run: terraform init -input=false
+        working-directory: environments\dev
          
-       - name: Terraform Plan
-         id: plan
-         run: terraform plan -no-color -input=false
-         continue-on-error: true
-         working-directory: environments/dev
+      - name: Terraform Plan
+        id: plan
+        run: terraform plan -no-color -input=false
+        continue-on-error: true
+        working-directory: environments\dev
 
-  my_third_job:
-    name: Job 3
-    runs-on: anjali
-    steps:
-    - name: Terraform Validate
-      id: validate
-      run: terraform validate -no-color
-      working-directory: environments/dev
+      - name: Terraform Validate
+        id: validate
+        run: terraform validate -no-color
+        working-directory: environments\dev
 
-
-  my_fourth_job:
-    name: Job 4
-    runs-on: anjali
-    steps:
       - name: Terraform apply
         id: apply
-        working-directory: environments/dev
-        run: terraform apply -auto-approve
-        
-        
+        working-directory: environments\dev
+        run: terraform apply -auto-approve -no-color -input=false
+              
+              
     
     
     
