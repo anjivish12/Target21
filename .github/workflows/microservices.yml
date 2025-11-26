@@ -28,13 +28,13 @@ jobs:
        - name: Terraform Init
          id: init
          run: terraform init -input=false
-         working-directory: environments\dev
+         working-directory: environments/dev
          
        - name: Terraform Plan
          id: plan
          run: terraform plan -no-color -input=false
          continue-on-error: true
-         working-directory: environments\dev
+         working-directory: environments/dev
 
   my_third_job:
     name: Job 3
@@ -43,7 +43,7 @@ jobs:
     - name: Terraform Validate
       id: validate
       run: terraform validate -no-color
-      working-directory: environments\dev
+      working-directory: environments/dev
 
 
   my_fourth_job:
@@ -52,7 +52,7 @@ jobs:
     steps:
       - name: Terraform apply
         id: apply
-        working-directory: environments\dev
+        working-directory: environments/dev
         run: terraform apply -auto-approve
         
         
