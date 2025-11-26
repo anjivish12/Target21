@@ -42,7 +42,7 @@ aks = {
 
 keys = {
   key1 = {
-    name = "todoapp-key1"
+    name = "todo-key"
     resource_group_name = "rg-anjali"
     location = "West US"
     sku_name = "standard"
@@ -51,13 +51,13 @@ keys = {
 
 secrets = {
   secret1 = {
-    key_name = "todoapp-key1"
+    key_name = "todo-key"
     resource_group_name = "rg-anjali"
     secret_name = "sql-admin-user"
     secret_value = "anjaliadmin"
   }
   secret2 = {
-    key_name = "todoapp-key1"
+    key_name = "todo-key"
     resource_group_name = "rg-anjali"
     secret_name = "sql-admin-password"
     secret_value = "anjali@12345"
@@ -68,8 +68,8 @@ servers = {
     name = "anjaliserver1"
     location = "West US"
     resource_group_name = "rg-anjali"
-    kv_name = "todoapp-key1"
-    secret_name = "servername"
+    kv_name = "todo-key"
+    secret_name = "sql-admin-user"
     secret_password = "sql-admin-password"
     version                      = "12.0"
 
